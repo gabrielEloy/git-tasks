@@ -1,4 +1,11 @@
 module.exports = {
+    User: {
+        tasks: async (user, _,{ dataSources }) => {
+            const tasks = await dataSources.taskRegistryService.getTasks(user.id);
+
+            return tasks;
+        }
+    },
     Query: {
         user: async (_, { login }, { dataSources }) => {
             const dbUser = await dataSources.userRegistryService.getUserByLogin(login);
